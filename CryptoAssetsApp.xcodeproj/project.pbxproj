@@ -17,6 +17,8 @@
 		CE0DFD2B288AF99C00EBBA05 /* CryptoAssetsCore.h in Headers */ = {isa = PBXBuildFile; fileRef = CE0DFD1D288AF99C00EBBA05 /* CryptoAssetsCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CE0DFD2E288AF99C00EBBA05 /* CryptoAssetsCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE0DFD1B288AF99C00EBBA05 /* CryptoAssetsCore.framework */; };
 		CE0DFD2F288AF99C00EBBA05 /* CryptoAssetsCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CE0DFD1B288AF99C00EBBA05 /* CryptoAssetsCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CE0DFD3D288AFEF600EBBA05 /* Coin.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0DFD3C288AFEF600EBBA05 /* Coin.swift */; };
+		CE0DFD3F288B04B700EBBA05 /* CoinService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0DFD3E288B04B700EBBA05 /* CoinService.swift */; };
 		CE4518BC288AF01B0026C8CF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4518BB288AF01B0026C8CF /* AppDelegate.swift */; };
 		CE4518BE288AF01B0026C8CF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4518BD288AF01B0026C8CF /* SceneDelegate.swift */; };
 		CE4518C0288AF01B0026C8CF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4518BF288AF01B0026C8CF /* ViewController.swift */; };
@@ -102,6 +104,8 @@
 		CE0DFD1D288AF99C00EBBA05 /* CryptoAssetsCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CryptoAssetsCore.h; sourceTree = "<group>"; };
 		CE0DFD22288AF99C00EBBA05 /* CryptoAssetsCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CryptoAssetsCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE0DFD29288AF99C00EBBA05 /* CryptoAssetsCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoAssetsCoreTests.swift; sourceTree = "<group>"; };
+		CE0DFD3C288AFEF600EBBA05 /* Coin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coin.swift; sourceTree = "<group>"; };
+		CE0DFD3E288B04B700EBBA05 /* CoinService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinService.swift; sourceTree = "<group>"; };
 		CE4518B8288AF01B0026C8CF /* CryptoAssetsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CryptoAssetsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE4518BB288AF01B0026C8CF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE4518BD288AF01B0026C8CF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -202,6 +206,8 @@
 		CE0DFD36288AF9AC00EBBA05 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				CE0DFD39288AFD5700EBBA05 /* Data */,
+				CE0DFD38288AFD5000EBBA05 /* Domain */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -212,6 +218,38 @@
 				CE0DFD29288AF99C00EBBA05 /* CryptoAssetsCoreTests.swift */,
 			);
 			path = Tests;
+			sourceTree = "<group>";
+		};
+		CE0DFD38288AFD5000EBBA05 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				CE0DFD3A288AFD6200EBBA05 /* Entities */,
+				CE0DFD3B288AFDD100EBBA05 /* Services */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		CE0DFD39288AFD5700EBBA05 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		CE0DFD3A288AFD6200EBBA05 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				CE0DFD3C288AFEF600EBBA05 /* Coin.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		CE0DFD3B288AFDD100EBBA05 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				CE0DFD3E288B04B700EBBA05 /* CoinService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		CE4518AF288AF01B0026C8CF = {
@@ -428,6 +466,7 @@
 					};
 					CE0DFD1A288AF99C00EBBA05 = {
 						CreatedOnToolsVersion = 13.4.1;
+						LastSwiftMigration = 1340;
 					};
 					CE0DFD21288AF99C00EBBA05 = {
 						CreatedOnToolsVersion = 13.4.1;
@@ -533,6 +572,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE0DFD3F288B04B700EBBA05 /* CoinService.swift in Sources */,
+				CE0DFD3D288AFEF600EBBA05 /* Coin.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -713,6 +754,7 @@
 		CE0DFD31288AF99C00EBBA05 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -732,6 +774,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -742,6 +785,7 @@
 		CE0DFD32288AF99C00EBBA05 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -919,6 +963,7 @@
 		CE4518E3288AF01E0026C8CF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -946,6 +991,7 @@
 		CE4518E4288AF01E0026C8CF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
