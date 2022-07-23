@@ -13,7 +13,7 @@ public class CoinsListViewController: UITableViewController {
     var viewModel: CoinsListViewModel? {
         didSet { bind() }
     }
-    var tableModel = [CoinCellModel]() {
+    var tableModel = [CoinCellController]() {
         didSet {
             tableView.reloadData()
         }
@@ -36,10 +36,8 @@ public class CoinsListViewController: UITableViewController {
     // MARK: - UITableViewDataDelegate
     
     public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: CoinCell = tableView.dequeueReusableCell()
-        let cellModel = tableModel[indexPath.row]
-        cell.configure(cellModel)
-        return cell
+        let controller = tableModel[indexPath.row]
+        return controller.cellForTableView(tableView)
     }
     
     private func bind() {

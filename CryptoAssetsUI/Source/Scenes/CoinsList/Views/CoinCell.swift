@@ -15,11 +15,4 @@ public class CoinCell: UITableViewCell {
     @IBOutlet public private(set) weak var priceLabel: UILabel!
     @IBOutlet public private(set) weak var changeContainerView: UIView!
     @IBOutlet public private(set) weak var changeLabel: UILabel!
-    
-    func configure(_ cellModel: CoinCellModel) {
-        nameLabel.text = cellModel.name
-        codeLabel.text = cellModel.code
-        priceLabel.text = ""
-        changeLabel.text = ""
-    }
 }

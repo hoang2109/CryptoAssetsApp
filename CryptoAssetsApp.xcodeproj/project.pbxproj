@@ -38,6 +38,7 @@
 		CE930E54288BABCA0035E985 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE930E52288BABBD0035E985 /* XCTestCase+MemoryLeakTracking.swift */; };
 		CE930E57288BADB20035E985 /* CoinsListViewController+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE930E56288BADB20035E985 /* CoinsListViewController+TestHelpers.swift */; };
 		CE930E5A288BC79B0035E985 /* CoinCell+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE930E58288BC7930035E985 /* CoinCell+TestHelpers.swift */; };
+		CE930E5C288BC9250035E985 /* CoinCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE930E5B288BC9250035E985 /* CoinCellController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -156,6 +157,7 @@
 		CE930E52288BABBD0035E985 /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
 		CE930E56288BADB20035E985 /* CoinsListViewController+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoinsListViewController+TestHelpers.swift"; sourceTree = "<group>"; };
 		CE930E58288BC7930035E985 /* CoinCell+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoinCell+TestHelpers.swift"; sourceTree = "<group>"; };
+		CE930E5B288BC9250035E985 /* CoinCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinCellController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -328,6 +330,7 @@
 			isa = PBXGroup;
 			children = (
 				CE0DFD42288B904C00EBBA05 /* CoinsListViewController.swift */,
+				CE930E5B288BC9250035E985 /* CoinCellController.swift */,
 			);
 			path = "View Controller";
 			sourceTree = "<group>";
@@ -717,6 +720,7 @@
 			files = (
 				CE0DFD4E288B914000EBBA05 /* CoinCellModel.swift in Sources */,
 				CE0DFD57288B9E8400EBBA05 /* CoinsListViewModel.swift in Sources */,
+				CE930E5C288BC9250035E985 /* CoinCellController.swift in Sources */,
 				CE0DFD50288B92C200EBBA05 /* CoinCell.swift in Sources */,
 				CE0DFD5B288BA2EC00EBBA05 /* UITableView+Dequeueing.swift in Sources */,
 				CE0DFD55288B97CE00EBBA05 /* CoinsListUIComposer.swift in Sources */,

@@ -6,8 +6,20 @@
 //
 
 import Foundation
+import CryptoAssetsCore
 
-struct CoinCellModel {
-    let name: String
-    let code: String
+class CoinCellModel {
+    private let coin: Coin
+    
+    var name: String {
+        coin.name
+    }
+    
+    var code: String {
+        coin.code
+    }
+    
+    init(_ coin: Coin) {
+        self.coin = coin
+    }
 }

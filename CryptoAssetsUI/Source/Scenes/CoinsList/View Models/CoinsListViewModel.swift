@@ -11,7 +11,7 @@ import CryptoAssetsCore
 public final class CoinsListViewModel {
     typealias Observer<T> = (T) -> ()
     
-    var onCoinChange: Observer<[CoinCellModel]>?
+    var onCoinChange: Observer<[CoinCellController]>?
     var onLoadingChange: Observer<Bool>?
     
     private let coinService: CoinService
@@ -25,8 +25,9 @@ public final class CoinsListViewModel {
         coinService.fetchCoins { [weak self] result in
             guard let self = self else { return }
             if let coins = try? result.get() {
-                let items = coins.map { coin in
-                    CoinCellModel(name: coin.name, code: coin.code)
+                let items = coins.map { (item) -> CoinCellController in
+                    let cellModel = CoinCellModel(item)
+                    return CoinCellController(cellModel: cellModel)
                 }
                 self.onCoinChange?(items)
             }
