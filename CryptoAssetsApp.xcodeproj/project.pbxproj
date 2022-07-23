@@ -10,7 +10,6 @@
 		CE0DFCD7288AF74900EBBA05 /* CryptoAssetsUI.h in Headers */ = {isa = PBXBuildFile; fileRef = CE0DFCC9288AF74900EBBA05 /* CryptoAssetsUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CE0DFCDA288AF74900EBBA05 /* CryptoAssetsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE0DFCC7288AF74900EBBA05 /* CryptoAssetsUI.framework */; };
 		CE0DFCDC288AF74900EBBA05 /* CryptoAssetsUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CE0DFCC7288AF74900EBBA05 /* CryptoAssetsUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		CE0DFCEA288AF78F00EBBA05 /* CryptoAssetsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0DFCE9288AF78F00EBBA05 /* CryptoAssetsUITests.swift */; };
 		CE0DFCEB288AF78F00EBBA05 /* CryptoAssetsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE0DFCC7288AF74900EBBA05 /* CryptoAssetsUI.framework */; };
 		CE0DFD23288AF99C00EBBA05 /* CryptoAssetsCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE0DFD1B288AF99C00EBBA05 /* CryptoAssetsCore.framework */; };
 		CE0DFD2A288AF99C00EBBA05 /* CryptoAssetsCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0DFD29288AF99C00EBBA05 /* CryptoAssetsCoreTests.swift */; };
@@ -33,6 +32,10 @@
 		CE4518C5288AF01D0026C8CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE4518C4288AF01D0026C8CF /* Assets.xcassets */; };
 		CE4518C8288AF01D0026C8CF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE4518C6288AF01D0026C8CF /* LaunchScreen.storyboard */; };
 		CE4518D3288AF01E0026C8CF /* CryptoAssetsAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4518D2288AF01E0026C8CF /* CryptoAssetsAppTests.swift */; };
+		CE930E4A288BA7AB0035E985 /* CoinsListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0DFD5E288BA58F00EBBA05 /* CoinsListViewControllerTests.swift */; };
+		CE930E50288BAAA30035E985 /* UIControl+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE930E4C288BAA590035E985 /* UIControl+TestHelpers.swift */; };
+		CE930E51288BAAA70035E985 /* UIRefreshControl+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE930E4E288BAA810035E985 /* UIRefreshControl+TestHelpers.swift */; };
+		CE930E54288BABCA0035E985 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE930E52288BABBD0035E985 /* XCTestCase+MemoryLeakTracking.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -124,7 +127,6 @@
 		CE0DFCC7288AF74900EBBA05 /* CryptoAssetsUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CryptoAssetsUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE0DFCC9288AF74900EBBA05 /* CryptoAssetsUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CryptoAssetsUI.h; sourceTree = "<group>"; };
 		CE0DFCE7288AF78F00EBBA05 /* CryptoAssetsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CryptoAssetsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		CE0DFCE9288AF78F00EBBA05 /* CryptoAssetsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoAssetsUITests.swift; sourceTree = "<group>"; };
 		CE0DFD1B288AF99C00EBBA05 /* CryptoAssetsCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CryptoAssetsCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE0DFD1D288AF99C00EBBA05 /* CryptoAssetsCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CryptoAssetsCore.h; sourceTree = "<group>"; };
 		CE0DFD22288AF99C00EBBA05 /* CryptoAssetsCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CryptoAssetsCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -138,6 +140,7 @@
 		CE0DFD54288B97CE00EBBA05 /* CoinsListUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsListUIComposer.swift; sourceTree = "<group>"; };
 		CE0DFD56288B9E8400EBBA05 /* CoinsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsListViewModel.swift; sourceTree = "<group>"; };
 		CE0DFD5A288BA2EC00EBBA05 /* UITableView+Dequeueing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Dequeueing.swift"; sourceTree = "<group>"; };
+		CE0DFD5E288BA58F00EBBA05 /* CoinsListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsListViewControllerTests.swift; sourceTree = "<group>"; };
 		CE4518B8288AF01B0026C8CF /* CryptoAssetsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CryptoAssetsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE4518BB288AF01B0026C8CF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE4518BD288AF01B0026C8CF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -146,6 +149,9 @@
 		CE4518C9288AF01D0026C8CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE4518CE288AF01E0026C8CF /* CryptoAssetsAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CryptoAssetsAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE4518D2288AF01E0026C8CF /* CryptoAssetsAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoAssetsAppTests.swift; sourceTree = "<group>"; };
+		CE930E4C288BAA590035E985 /* UIControl+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIControl+TestHelpers.swift"; sourceTree = "<group>"; };
+		CE930E4E288BAA810035E985 /* UIRefreshControl+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIRefreshControl+TestHelpers.swift"; sourceTree = "<group>"; };
+		CE930E52288BABBD0035E985 /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -212,7 +218,8 @@
 		CE0DFD14288AF92600EBBA05 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				CE0DFCE9288AF78F00EBBA05 /* CryptoAssetsUITests.swift */,
+				CE930E4B288BA9E80035E985 /* Helpers */,
+				CE0DFD5C288BA55800EBBA05 /* Scenes */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -361,6 +368,22 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		CE0DFD5C288BA55800EBBA05 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				CE0DFD5D288BA57100EBBA05 /* CoinsList */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		CE0DFD5D288BA57100EBBA05 /* CoinsList */ = {
+			isa = PBXGroup;
+			children = (
+				CE0DFD5E288BA58F00EBBA05 /* CoinsListViewControllerTests.swift */,
+			);
+			path = CoinsList;
+			sourceTree = "<group>";
+		};
 		CE4518AF288AF01B0026C8CF = {
 			isa = PBXGroup;
 			children = (
@@ -420,6 +443,16 @@
 				CE4518C9288AF01D0026C8CF /* Info.plist */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CE930E4B288BA9E80035E985 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				CE930E4C288BAA590035E985 /* UIControl+TestHelpers.swift */,
+				CE930E4E288BAA810035E985 /* UIRefreshControl+TestHelpers.swift */,
+				CE930E52288BABBD0035E985 /* XCTestCase+MemoryLeakTracking.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -681,7 +714,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE0DFCEA288AF78F00EBBA05 /* CryptoAssetsUITests.swift in Sources */,
+				CE930E4A288BA7AB0035E985 /* CoinsListViewControllerTests.swift in Sources */,
+				CE930E54288BABCA0035E985 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
+				CE930E51288BAAA70035E985 /* UIRefreshControl+TestHelpers.swift in Sources */,
+				CE930E50288BAAA30035E985 /* UIControl+TestHelpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -32,9 +32,9 @@
       <CodeCoverageTargets>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CE0DFCE6288AF78F00EBBA05"
-            BuildableName = "CryptoAssetsUITests.xctest"
-            BlueprintName = "CryptoAssetsUITests"
+            BlueprintIdentifier = "CE0DFCC6288AF74900EBBA05"
+            BuildableName = "CryptoAssetsUI.framework"
+            BlueprintName = "CryptoAssetsUI"
             ReferencedContainer = "container:CryptoAssetsApp.xcodeproj">
          </BuildableReference>
       </CodeCoverageTargets>
