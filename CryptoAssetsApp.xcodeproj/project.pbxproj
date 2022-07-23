@@ -37,6 +37,7 @@
 		CE930E51288BAAA70035E985 /* UIRefreshControl+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE930E4E288BAA810035E985 /* UIRefreshControl+TestHelpers.swift */; };
 		CE930E54288BABCA0035E985 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE930E52288BABBD0035E985 /* XCTestCase+MemoryLeakTracking.swift */; };
 		CE930E57288BADB20035E985 /* CoinsListViewController+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE930E56288BADB20035E985 /* CoinsListViewController+TestHelpers.swift */; };
+		CE930E5A288BC79B0035E985 /* CoinCell+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE930E58288BC7930035E985 /* CoinCell+TestHelpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -154,6 +155,7 @@
 		CE930E4E288BAA810035E985 /* UIRefreshControl+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIRefreshControl+TestHelpers.swift"; sourceTree = "<group>"; };
 		CE930E52288BABBD0035E985 /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
 		CE930E56288BADB20035E985 /* CoinsListViewController+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoinsListViewController+TestHelpers.swift"; sourceTree = "<group>"; };
+		CE930E58288BC7930035E985 /* CoinCell+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoinCell+TestHelpers.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -462,6 +464,7 @@
 			isa = PBXGroup;
 			children = (
 				CE930E56288BADB20035E985 /* CoinsListViewController+TestHelpers.swift */,
+				CE930E58288BC7930035E985 /* CoinCell+TestHelpers.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -725,6 +728,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE930E5A288BC79B0035E985 /* CoinCell+TestHelpers.swift in Sources */,
 				CE930E4A288BA7AB0035E985 /* CoinsListViewControllerTests.swift in Sources */,
 				CE930E54288BABCA0035E985 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 				CE930E51288BAAA70035E985 /* UIRefreshControl+TestHelpers.swift in Sources */,

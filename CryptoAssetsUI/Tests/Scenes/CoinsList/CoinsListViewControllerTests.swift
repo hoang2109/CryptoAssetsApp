@@ -61,15 +61,7 @@ class CoinsListViewControllerTests: XCTestCase {
         
         service.didFinishFetchingCoins(with: [coin1, coin2])
         
-        XCTAssertEqual(sut.numberOfItems, 2)
-        let cell1 = sut.coinCell(at: 0)
-        let cell2 = sut.coinCell(at: 1)
-        
-        XCTAssertEqual(cell1.nameLabel.text, coin1.name)
-        XCTAssertEqual(cell1.codeLabel.text, coin1.code)
-        
-        XCTAssertEqual(cell2.nameLabel.text, coin2.name)
-        XCTAssertEqual(cell2.codeLabel.text, coin2.code)
+        assertThat(sut, rendersUIForCoins: [coin1, coin2])
     }
     
     func test_fetchCoinsListCompletion_rendersEmptyCoinsListOnError() {
@@ -78,7 +70,7 @@ class CoinsListViewControllerTests: XCTestCase {
         sut.loadViewIfNeeded()
         service.didFinishFetchingCoins(with: anyError())
         
-        XCTAssertEqual(sut.numberOfItems, 0)
+        assertThat(sut, rendersUIForCoins: [])
     }
     
     func test_fetchCoinsListCompletion_doesNotAlterRenderCurrentStateOnError() {
@@ -92,15 +84,7 @@ class CoinsListViewControllerTests: XCTestCase {
         sut.simulateUserInitiatedCoinsListReload()
         service.didFinishFetchingCoins(with: anyError())
         
-        XCTAssertEqual(sut.numberOfItems, 2)
-        let cell1 = sut.coinCell(at: 0)
-        let cell2 = sut.coinCell(at: 1)
-        
-        XCTAssertEqual(cell1.nameLabel.text, coin1.name)
-        XCTAssertEqual(cell1.codeLabel.text, coin1.code)
-        
-        XCTAssertEqual(cell2.nameLabel.text, coin2.name)
-        XCTAssertEqual(cell2.codeLabel.text, coin2.code)
+        assertThat(sut, rendersUIForCoins: [coin1, coin2])
     }
     
     //MARK: - Helper
@@ -115,6 +99,24 @@ class CoinsListViewControllerTests: XCTestCase {
     
     private func anyError() -> Error {
         return NSError(domain: "any error", code: 0)
+    }
+    
+    private func assertThat(_ sut: CoinsListViewController, rendersUIForCoins coins: [Coin], file: StaticString = #filePath, line: UInt = #line) {
+        XCTAssertEqual(sut.numberOfItems, coins.count, "Expected \(coins.count) items, got \(sut.numberOfItems) instead", file: file, line: line)
+        
+        coins.enumerated().forEach { index, item in
+            assertThat(sut, hasViewConfigureFor: item, at: index)
+        }
+    }
+    
+    private func assertThat(_ sut: CoinsListViewController, hasViewConfigureFor item: Coin, at index: Int, file: StaticString = #filePath, line: UInt = #line) {
+        let view = sut.coinCell(at: index)
+        guard let cell = view as? CoinCell  else {
+            XCTFail("Expected \(CoinCell.self) instance, get \(String(describing: view)) instead", file: file, line: line)
+            return
+        }
+        XCTAssertEqual(cell.name, item.name, "Expected name text to be \(String(describing: item.name)) for coin at index (\(index))", file: file, line: line)
+        XCTAssertEqual(cell.code, item.code, "Expected code text to be \(String(describing: item.code)) for coin at index (\(index))", file: file, line: line)
     }
     
     private class CoinServiceSpy: CoinService {

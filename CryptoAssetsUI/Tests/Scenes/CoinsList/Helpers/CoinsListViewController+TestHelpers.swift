@@ -22,8 +22,8 @@ extension CoinsListViewController {
         tableView.numberOfRows(inSection: 0)
     }
     
-    func coinCell(at index: Int) -> CoinCell {
+    func coinCell(at index: Int) -> UITableViewCell? {
         let ds = tableView.dataSource
-        return ds?.tableView(tableView, cellForRowAt: IndexPath(item: index, section: 0)) as! CoinCell
+        return ds?.tableView(tableView, cellForRowAt: IndexPath(item: index, section: 0))
     }
 }
