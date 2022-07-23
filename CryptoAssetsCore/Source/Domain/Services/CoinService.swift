@@ -7,8 +7,8 @@
 
 import Foundation
 
-protocol CoinService {
+public protocol CoinService {
     typealias Result = Swift.Result<[Coin], Error>
     
-    func fetchCoins(_ completion: (Result) -> ())
+    func fetchCoins(_ completion: @escaping (Result) -> ())
 }

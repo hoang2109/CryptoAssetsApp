@@ -7,8 +7,14 @@
 
 import Foundation
 
-struct Coin: Equatable {
-    let name: String
-    let code: String
-    let imageURL: String
+public struct Coin: Equatable {
+    public let name: String
+    public let code: String
+    public let imageURL: String
+    
+    public init(name: String, code: String, imageURL: String) {
+        self.name = name
+        self.code = code
+        self.imageURL = imageURL
+    }
 }
