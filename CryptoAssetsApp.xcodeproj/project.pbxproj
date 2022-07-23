@@ -36,6 +36,7 @@
 		CE930E50288BAAA30035E985 /* UIControl+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE930E4C288BAA590035E985 /* UIControl+TestHelpers.swift */; };
 		CE930E51288BAAA70035E985 /* UIRefreshControl+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE930E4E288BAA810035E985 /* UIRefreshControl+TestHelpers.swift */; };
 		CE930E54288BABCA0035E985 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE930E52288BABBD0035E985 /* XCTestCase+MemoryLeakTracking.swift */; };
+		CE930E57288BADB20035E985 /* CoinsListViewController+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE930E56288BADB20035E985 /* CoinsListViewController+TestHelpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -152,6 +153,7 @@
 		CE930E4C288BAA590035E985 /* UIControl+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIControl+TestHelpers.swift"; sourceTree = "<group>"; };
 		CE930E4E288BAA810035E985 /* UIRefreshControl+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIRefreshControl+TestHelpers.swift"; sourceTree = "<group>"; };
 		CE930E52288BABBD0035E985 /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
+		CE930E56288BADB20035E985 /* CoinsListViewController+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoinsListViewController+TestHelpers.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -379,6 +381,7 @@
 		CE0DFD5D288BA57100EBBA05 /* CoinsList */ = {
 			isa = PBXGroup;
 			children = (
+				CE930E55288BAD970035E985 /* Helpers */,
 				CE0DFD5E288BA58F00EBBA05 /* CoinsListViewControllerTests.swift */,
 			);
 			path = CoinsList;
@@ -451,6 +454,14 @@
 				CE930E4C288BAA590035E985 /* UIControl+TestHelpers.swift */,
 				CE930E4E288BAA810035E985 /* UIRefreshControl+TestHelpers.swift */,
 				CE930E52288BABBD0035E985 /* XCTestCase+MemoryLeakTracking.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		CE930E55288BAD970035E985 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				CE930E56288BADB20035E985 /* CoinsListViewController+TestHelpers.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -717,6 +728,7 @@
 				CE930E4A288BA7AB0035E985 /* CoinsListViewControllerTests.swift in Sources */,
 				CE930E54288BABCA0035E985 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 				CE930E51288BAAA70035E985 /* UIRefreshControl+TestHelpers.swift in Sources */,
+				CE930E57288BADB20035E985 /* CoinsListViewController+TestHelpers.swift in Sources */,
 				CE930E50288BAAA30035E985 /* UIControl+TestHelpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

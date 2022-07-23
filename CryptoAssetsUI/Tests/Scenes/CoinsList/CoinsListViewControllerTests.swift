@@ -30,7 +30,7 @@ class CoinsListViewControllerTests: XCTestCase {
         let (sut, service) = makeSUT()
         
         sut.loadViewIfNeeded()
-        sut.refreshControl?.simulatePullToRefresh()
+        sut.simulateUserInitiatedCoinsListReload()
         
         XCTAssertEqual(service.fetchCoinsCount, 2)
     }
@@ -40,7 +40,7 @@ class CoinsListViewControllerTests: XCTestCase {
         
         sut.loadViewIfNeeded()
         
-        XCTAssertEqual(sut.refreshControl?.isRefreshing, true)
+        XCTAssertEqual(sut.isShowingLoadingIndicator, true)
     }
     
     func test_fetchCoinList_hideLoadingIndicatorWhenComplete() {
@@ -49,7 +49,7 @@ class CoinsListViewControllerTests: XCTestCase {
         sut.loadViewIfNeeded()
         service.didFinishFetchingCoins()
         
-        XCTAssertEqual(sut.refreshControl?.isRefreshing, false)
+        XCTAssertEqual(sut.isShowingLoadingIndicator, false)
     }
     
     //MARK: - Helper
