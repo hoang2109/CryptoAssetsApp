@@ -15,9 +15,11 @@ public final class CoinsListViewModel {
     var onLoadingChange: Observer<Bool>?
     
     private let coinService: CoinService
+    private let imageService: ImageService
     
-    public init(coinService: CoinService) {
+    public init(coinService: CoinService, imageService: ImageService) {
         self.coinService = coinService
+        self.imageService = imageService
     }
     
     public func fetchCoinsList() {
@@ -26,7 +28,7 @@ public final class CoinsListViewModel {
             guard let self = self else { return }
             if let coins = try? result.get() {
                 let items = coins.map { (item) -> CoinCellController in
-                    let cellModel = CoinCellModel(item)
+                    let cellModel = CoinCellModel(item, imageService: self.imageService)
                     return CoinCellController(cellModel: cellModel)
                 }
                 self.onCoinChange?(items)

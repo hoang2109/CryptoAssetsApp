@@ -12,9 +12,9 @@ import CryptoAssetsCore
 public final class CoinsListUIComposer {
     private init() {}
     
-    public static func coinsListComposedWith(coinService: CoinService) -> CoinsListViewController {
+    public static func coinsListComposedWith(coinService: CoinService, imageService: ImageService) -> CoinsListViewController {
         let viewController = Self.makeCoinsListViewController(title: "CryptoAssets")
-        let viewModel = CoinsListViewModel(coinService: coinService)
+        let viewModel = CoinsListViewModel(coinService: coinService, imageService: imageService)
         viewController.viewModel = viewModel
         return viewController
     }

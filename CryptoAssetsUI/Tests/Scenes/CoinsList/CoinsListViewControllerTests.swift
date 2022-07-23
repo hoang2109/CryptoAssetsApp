@@ -89,9 +89,9 @@ class CoinsListViewControllerTests: XCTestCase {
     
     //MARK: - Helper
     
-    private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (sut: CoinsListViewController, service: CoinServiceSpy) {
-        let service = CoinServiceSpy()
-        let sut = CoinsListUIComposer.coinsListComposedWith(coinService: service)
+    private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (sut: CoinsListViewController, service: ServiceSpy) {
+        let service = ServiceSpy()
+        let sut = CoinsListUIComposer.coinsListComposedWith(coinService: service, imageService: service)
         trackForMemoryLeaks(service, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
         return (sut, service)
@@ -119,27 +119,41 @@ class CoinsListViewControllerTests: XCTestCase {
         XCTAssertEqual(cell.code, item.code, "Expected code text to be \(String(describing: item.code)) for coin at index (\(index))", file: file, line: line)
     }
     
-    private class CoinServiceSpy: CoinService {
+    private class ServiceSpy: CoinService, ImageService {
+        
+        // MARK: - CoinService
         var fetchCoinsCount: Int {
-            return completions.count
+            return fetchCoinsCompletions.count
         }
         
-        var completions: [(CoinService.Result) -> ()] = []
+        private(set) var fetchCoinsCompletions: [(CoinService.Result) -> ()] = []
         
         func fetchCoins(_ completion: @escaping (CoinService.Result) -> ()) {
-            completions.append(completion)
+            fetchCoinsCompletions.append(completion)
         }
         
         func didFinishFetchingCoins(at index: Int = 0) {
-            completions[index](.success([]))
+            fetchCoinsCompletions[index](.success([]))
         }
         
         func didFinishFetchingCoins(at index: Int = 0, with coins: [Coin]) {
-            completions[index](.success(coins))
+            fetchCoinsCompletions[index](.success(coins))
         }
         
         func didFinishFetchingCoins(at index: Int = 0, with error: Error) {
-            completions[index](.failure(error))
+            fetchCoinsCompletions[index](.failure(error))
+        }
+        
+        // MARK: - ImageService
+        
+        private class TaskSpy: Cancellable {
+            func cancel() {
+                
+            }
+        }
+        
+        func load(_ imageURL: String, completion: @escaping (ImageService.Result) -> ()) -> Cancellable {
+            return TaskSpy()
         }
     }
 }

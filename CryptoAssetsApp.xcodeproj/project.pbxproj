@@ -39,6 +39,9 @@
 		CE930E57288BADB20035E985 /* CoinsListViewController+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE930E56288BADB20035E985 /* CoinsListViewController+TestHelpers.swift */; };
 		CE930E5A288BC79B0035E985 /* CoinCell+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE930E58288BC7930035E985 /* CoinCell+TestHelpers.swift */; };
 		CE930E5C288BC9250035E985 /* CoinCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE930E5B288BC9250035E985 /* CoinCellController.swift */; };
+		CE930E5E288BCE190035E985 /* ImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE930E5D288BCE190035E985 /* ImageService.swift */; };
+		CE930E61288BD6780035E985 /* UIImageView+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE930E60288BD6780035E985 /* UIImageView+Animations.swift */; };
+		CE930E64288BD6D20035E985 /* Cancellable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE930E63288BD6D20035E985 /* Cancellable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -158,6 +161,9 @@
 		CE930E56288BADB20035E985 /* CoinsListViewController+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoinsListViewController+TestHelpers.swift"; sourceTree = "<group>"; };
 		CE930E58288BC7930035E985 /* CoinCell+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoinCell+TestHelpers.swift"; sourceTree = "<group>"; };
 		CE930E5B288BC9250035E985 /* CoinCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinCellController.swift; sourceTree = "<group>"; };
+		CE930E5D288BCE190035E985 /* ImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageService.swift; sourceTree = "<group>"; };
+		CE930E60288BD6780035E985 /* UIImageView+Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Animations.swift"; sourceTree = "<group>"; };
+		CE930E63288BD6D20035E985 /* Cancellable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cancellable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -252,6 +258,7 @@
 		CE0DFD36288AF9AC00EBBA05 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				CE930E62288BD6BE0035E985 /* Helpers */,
 				CE0DFD39288AFD5700EBBA05 /* Data */,
 				CE0DFD38288AFD5000EBBA05 /* Domain */,
 			);
@@ -294,6 +301,7 @@
 			isa = PBXGroup;
 			children = (
 				CE0DFD3E288B04B700EBBA05 /* CoinService.swift */,
+				CE930E5D288BCE190035E985 /* ImageService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -371,6 +379,7 @@
 			isa = PBXGroup;
 			children = (
 				CE0DFD5A288BA2EC00EBBA05 /* UITableView+Dequeueing.swift */,
+				CE930E60288BD6780035E985 /* UIImageView+Animations.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -468,6 +477,14 @@
 			children = (
 				CE930E56288BADB20035E985 /* CoinsListViewController+TestHelpers.swift */,
 				CE930E58288BC7930035E985 /* CoinCell+TestHelpers.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		CE930E62288BD6BE0035E985 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				CE930E63288BD6D20035E985 /* Cancellable.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -719,6 +736,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE0DFD4E288B914000EBBA05 /* CoinCellModel.swift in Sources */,
+				CE930E61288BD6780035E985 /* UIImageView+Animations.swift in Sources */,
 				CE0DFD57288B9E8400EBBA05 /* CoinsListViewModel.swift in Sources */,
 				CE930E5C288BC9250035E985 /* CoinCellController.swift in Sources */,
 				CE0DFD50288B92C200EBBA05 /* CoinCell.swift in Sources */,
@@ -747,6 +765,8 @@
 			files = (
 				CE0DFD3F288B04B700EBBA05 /* CoinService.swift in Sources */,
 				CE0DFD3D288AFEF600EBBA05 /* Coin.swift in Sources */,
+				CE930E64288BD6D20035E985 /* Cancellable.swift in Sources */,
+				CE930E5E288BCE190035E985 /* ImageService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

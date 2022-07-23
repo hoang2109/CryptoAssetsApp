@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-public class CoinsListViewController: UITableViewController {
+public class CoinsListViewController: UITableViewController, UITableViewDataSourcePrefetching {
     
     var viewModel: CoinsListViewModel? {
         didSet { bind() }
@@ -36,8 +36,25 @@ public class CoinsListViewController: UITableViewController {
     // MARK: - UITableViewDataDelegate
     
     public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let controller = tableModel[indexPath.row]
-        return controller.cellForTableView(tableView)
+        cellController(for: indexPath.row).cellForTableView(tableView)
+    }
+    
+    public override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cellController(for: indexPath.row).cancelLoad()
+    }
+    
+    // MARK: - UITableViewDataSourcePrefetching
+    
+    public func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        indexPaths.forEach { indexPath in
+            cellController(for: indexPath.row).preload()
+        }
+    }
+    
+    public func tableView(_ tableView: UITableView, cancelPrefetchingForRowsAt indexPaths: [IndexPath]) {
+        indexPaths.forEach { indexPath in
+            cellController(for: indexPath.row).cancelLoad()
+        }
     }
     
     private func bind() {
@@ -54,5 +71,9 @@ public class CoinsListViewController: UITableViewController {
                 self.refreshControl?.endRefreshing()
             }
         }
+    }
+    
+    private func cellController(for row: Int) -> CoinCellController {
+        tableModel[row]
     }
 }

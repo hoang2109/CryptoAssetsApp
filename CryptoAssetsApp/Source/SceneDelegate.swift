@@ -27,8 +27,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     func makeCoinsListViewController() -> UIViewController {
-        let service = CoinServiceStub()        
-        let viewController = CoinsListUIComposer.coinsListComposedWith(coinService: service)
+        let coinService = CoinServiceStub()
+        let imageService = ImageServiceStub()
+        let viewController = CoinsListUIComposer.coinsListComposedWith(coinService: coinService, imageService: imageService)
         return viewController
     }
     
@@ -45,6 +46,34 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 completion(.success(self.stubItem))
             }
         }
+    }
+    
+    private class ImageTask: Cancellable {
+        func cancel() {
+            
+        }
+    }
+    
+    private class ImageServiceStub: ImageService {
+        func load(_ imageURL: String, completion: @escaping (ImageService.Result) -> ()) -> Cancellable {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                completion(.success(UIImage.make(withColor: .blue, size: CGSize(width: 30, height: 30)).pngData()!))
+            }
+            return ImageTask()
+        }
+    }
+}
+
+extension UIImage {
+    static func make(withColor color: UIColor, size: CGSize = CGSize(width: 1, height: 1)) -> UIImage {
+        let rect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+        UIGraphicsBeginImageContext(rect.size)
+        let context = UIGraphicsGetCurrentContext()!
+        context.setFillColor(color.cgColor)
+        context.fill(rect)
+        let img = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return img!
     }
 }
 
