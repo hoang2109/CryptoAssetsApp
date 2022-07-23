@@ -7,6 +7,7 @@
 
 import Foundation
 import CryptoAssetsUI
+import UIKit
 
 extension CoinsListViewController {
     func simulateUserInitiatedCoinsListReload() {
@@ -15,5 +16,14 @@ extension CoinsListViewController {
     
     var isShowingLoadingIndicator: Bool {
         return refreshControl?.isRefreshing == true
+    }
+    
+    var numberOfItems: Int {
+        tableView.numberOfRows(inSection: 0)
+    }
+    
+    func coinCell(at index: Int) -> CoinCell {
+        let ds = tableView.dataSource
+        return ds?.tableView(tableView, cellForRowAt: IndexPath(item: index, section: 0)) as! CoinCell
     }
 }

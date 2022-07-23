@@ -8,13 +8,13 @@
 import Foundation
 import UIKit
 
-class CoinCell: UITableViewCell {
-    @IBOutlet private(set) weak var iconImageView: UIImageView!
-    @IBOutlet private(set) weak var nameLabel: UILabel!
-    @IBOutlet private(set) weak var codeLabel: UILabel!
-    @IBOutlet private(set) weak var priceLabel: UILabel!
-    @IBOutlet private(set) weak var changeContainerView: UIView!
-    @IBOutlet private(set) weak var changeLabel: UILabel!
+public class CoinCell: UITableViewCell {
+    @IBOutlet public private(set) weak var iconImageView: UIImageView!
+    @IBOutlet public private(set) weak var nameLabel: UILabel!
+    @IBOutlet public private(set) weak var codeLabel: UILabel!
+    @IBOutlet public private(set) weak var priceLabel: UILabel!
+    @IBOutlet public private(set) weak var changeContainerView: UIView!
+    @IBOutlet public private(set) weak var changeLabel: UILabel!
     
     func configure(_ cellModel: CoinCellModel) {
         nameLabel.text = cellModel.name
