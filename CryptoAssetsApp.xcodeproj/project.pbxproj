@@ -42,6 +42,8 @@
 		CE930E5E288BCE190035E985 /* ImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE930E5D288BCE190035E985 /* ImageService.swift */; };
 		CE930E61288BD6780035E985 /* UIImageView+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE930E60288BD6780035E985 /* UIImageView+Animations.swift */; };
 		CE930E64288BD6D20035E985 /* Cancellable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE930E63288BD6D20035E985 /* Cancellable.swift */; };
+		CE930E66288BD8C50035E985 /* UIImage+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE930E65288BD8C50035E985 /* UIImage+Color.swift */; };
+		CE930E68288BE6BA0035E985 /* MainQueueDispatchDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE930E67288BE6BA0035E985 /* MainQueueDispatchDecorator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -164,6 +166,8 @@
 		CE930E5D288BCE190035E985 /* ImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageService.swift; sourceTree = "<group>"; };
 		CE930E60288BD6780035E985 /* UIImageView+Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Animations.swift"; sourceTree = "<group>"; };
 		CE930E63288BD6D20035E985 /* Cancellable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cancellable.swift; sourceTree = "<group>"; };
+		CE930E65288BD8C50035E985 /* UIImage+Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Color.swift"; sourceTree = "<group>"; };
+		CE930E67288BE6BA0035E985 /* MainQueueDispatchDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainQueueDispatchDecorator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -363,6 +367,7 @@
 			isa = PBXGroup;
 			children = (
 				CE0DFD54288B97CE00EBBA05 /* CoinsListUIComposer.swift */,
+				CE930E67288BE6BA0035E985 /* MainQueueDispatchDecorator.swift */,
 			);
 			path = Composer;
 			sourceTree = "<group>";
@@ -380,6 +385,7 @@
 			children = (
 				CE0DFD5A288BA2EC00EBBA05 /* UITableView+Dequeueing.swift */,
 				CE930E60288BD6780035E985 /* UIImageView+Animations.swift */,
+				CE930E65288BD8C50035E985 /* UIImage+Color.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -737,9 +743,11 @@
 			files = (
 				CE0DFD4E288B914000EBBA05 /* CoinCellModel.swift in Sources */,
 				CE930E61288BD6780035E985 /* UIImageView+Animations.swift in Sources */,
+				CE930E66288BD8C50035E985 /* UIImage+Color.swift in Sources */,
 				CE0DFD57288B9E8400EBBA05 /* CoinsListViewModel.swift in Sources */,
 				CE930E5C288BC9250035E985 /* CoinCellController.swift in Sources */,
 				CE0DFD50288B92C200EBBA05 /* CoinCell.swift in Sources */,
+				CE930E68288BE6BA0035E985 /* MainQueueDispatchDecorator.swift in Sources */,
 				CE0DFD5B288BA2EC00EBBA05 /* UITableView+Dequeueing.swift in Sources */,
 				CE0DFD55288B97CE00EBBA05 /* CoinsListUIComposer.swift in Sources */,
 				CE0DFD43288B904C00EBBA05 /* CoinsListViewController.swift in Sources */,

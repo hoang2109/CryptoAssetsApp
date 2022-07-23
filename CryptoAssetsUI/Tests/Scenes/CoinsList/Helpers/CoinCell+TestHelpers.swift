@@ -16,4 +16,8 @@ extension CoinCell {
     var code: String? {
         return codeLabel.text
     }
+    
+    var renderImage: Data? {
+        return iconImageView.image?.pngData()
+    }
 }

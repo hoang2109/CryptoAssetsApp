@@ -20,6 +20,8 @@ public class CoinsListViewController: UITableViewController, UITableViewDataSour
     }
     
     public override func viewDidLoad() {
+        tableView.prefetchDataSource = self
+        
         fetchCoins()
     }
     

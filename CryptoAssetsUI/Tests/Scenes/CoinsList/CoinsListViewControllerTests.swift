@@ -87,6 +87,149 @@ class CoinsListViewControllerTests: XCTestCase {
         assertThat(sut, rendersUIForCoins: [coin1, coin2])
     }
     
+    func test_cellAppear_callLoadImage() {
+        let (sut, service) = makeSUT()
+        
+        let coin1 = Coin(name: "Bitcoin", code: "BTC", imageURL: "/btc")
+        let coin2 = Coin(name: "Etherium", code: "ETH", imageURL: "/eth")
+        
+        sut.loadViewIfNeeded()
+        service.didFinishFetchingCoins(with: [coin1, coin2])
+        
+        sut.coinCell(at: 0)
+        XCTAssertEqual(service.loadImageURLs, [coin1.imageURL])
+        
+        sut.coinCell(at: 1)
+        XCTAssertEqual(service.loadImageURLs, [coin1.imageURL, coin2.imageURL])
+    }
+    
+    func test_loadImage_rendersImageSuccessfullyOnCompletion() {
+        let (sut, service) = makeSUT()
+        
+        let coin1 = Coin(name: "Bitcoin", code: "BTC", imageURL: "any")
+        let coin2 = Coin(name: "Etherium", code: "ETH", imageURL: "any")
+        let redImageData = UIImage.make(withColor: .red).pngData()!
+        let blueImageData = UIImage.make(withColor: .blue).pngData()!
+        
+        sut.loadViewIfNeeded()
+        service.didFinishFetchingCoins(with: [coin1, coin2])
+        
+        let cell1 = sut.coinCell(at: 0) as! CoinCell
+        let cell2 = sut.coinCell(at: 1) as! CoinCell
+        
+        service.didFinishLoadingImage(at: 0, data: redImageData)
+        XCTAssertEqual(cell1.iconImageView.image?.pngData(), redImageData)
+        
+        service.didFinishLoadingImage(at: 1, data: blueImageData)
+        XCTAssertEqual(cell2.iconImageView.image?.pngData(), blueImageData)
+    }
+    
+    func test_endDisplayingCell_cancelLoadImage() {
+        let (sut, service) = makeSUT()
+        
+        let coin1 = Coin(name: "Bitcoin", code: "BTC", imageURL: "any")
+        let coin2 = Coin(name: "Etherium", code: "ETH", imageURL: "any")
+        
+        sut.loadViewIfNeeded()
+        service.didFinishFetchingCoins(with: [coin1, coin2])
+        
+        sut.coinCell(at: 0)
+        sut.coinCell(at: 1)
+        
+        sut.didEndDisplayingCell(at: 0)
+        XCTAssertEqual(service.cancelLoadImageURLs, [coin1.imageURL])
+        
+        sut.didEndDisplayingCell(at: 1)
+        XCTAssertEqual(service.cancelLoadImageURLs, [coin1.imageURL, coin2.imageURL])
+    }
+    
+    func test_endDisplayingCell_notRendersImageOnCompletion() {
+        let (sut, service) = makeSUT()
+        
+        let coin1 = Coin(name: "Bitcoin", code: "BTC", imageURL: "any")
+        let coin2 = Coin(name: "Etherium", code: "ETH", imageURL: "any")
+        
+        sut.loadViewIfNeeded()
+        service.didFinishFetchingCoins(with: [coin1, coin2])
+        
+        let cell = sut.didEndDisplayingCell(at: 0) as! CoinCell
+        
+        service.didFinishLoadingImage(data: UIImage.make(withColor: .red).pngData()!)
+        
+        XCTAssertNil(cell.renderImage)
+    }
+    
+    func test_cellNearVisible_preloadImage() {
+        let (sut, service) = makeSUT()
+        
+        let coin1 = Coin(name: "Bitcoin", code: "BTC", imageURL: "/btc")
+        let coin2 = Coin(name: "Etherium", code: "ETH", imageURL: "/eth")
+        
+        sut.loadViewIfNeeded()
+        service.didFinishFetchingCoins(with: [coin1, coin2])
+        
+        sut.simulateCellNearVisible(at: 0)
+        
+        XCTAssertEqual(service.loadImageURLs, [coin1.imageURL])
+        
+        sut.simulateCellNearVisible(at: 1)
+        XCTAssertEqual(service.loadImageURLs, [coin1.imageURL, coin2.imageURL])
+    }
+    
+    func test_cellNotNearVisible_cancelPreloadImage() {
+        let (sut, service) = makeSUT()
+        
+        let coin1 = Coin(name: "Bitcoin", code: "BTC", imageURL: "/btc")
+        let coin2 = Coin(name: "Etherium", code: "ETH", imageURL: "/eth")
+        
+        sut.loadViewIfNeeded()
+        service.didFinishFetchingCoins(with: [coin1, coin2])
+        
+        sut.simulateCellNotNearVisible(at: 0)
+        
+        XCTAssertEqual(service.cancelLoadImageURLs, [coin1.imageURL])
+        
+        sut.simulateCellNotNearVisible(at: 1)
+        XCTAssertEqual(service.cancelLoadImageURLs, [coin1.imageURL, coin2.imageURL])
+    }
+    
+    func test_fetchCoinsCompletion_dispatchesFromBackGroundToMainThrea() {
+        let coin1 = Coin(name: "Bitcoin", code: "BTC", imageURL: "/btc")
+        let coin2 = Coin(name: "Etherium", code: "ETH", imageURL: "/eth")
+        let (sut, service) = makeSUT()
+        
+        sut.loadViewIfNeeded()
+        
+        let exp = expectation(description: "Waiting for completion")
+        
+        DispatchQueue.global().async {
+            service.didFinishFetchingCoins(with: [coin1, coin2])
+            exp.fulfill()
+        }
+        
+        wait(for: [exp], timeout: 1.0)
+    }
+    
+    func test_loadImageCompletion_dispatchesFromBackGroundToMainThrea() {
+        let coin1 = Coin(name: "Bitcoin", code: "BTC", imageURL: "/btc")
+        let coin2 = Coin(name: "Etherium", code: "ETH", imageURL: "/eth")
+        let (sut, service) = makeSUT()
+        
+        sut.loadViewIfNeeded()
+        service.didFinishFetchingCoins(with: [coin1, coin2])
+        
+        sut.coinCell(at: 0)
+        
+        let exp = expectation(description: "Waiting for completion")
+        
+        DispatchQueue.global().async {
+            service.didFinishLoadingImage(data: UIImage.make(withColor: .red).pngData()!)
+            exp.fulfill()
+        }
+        
+        wait(for: [exp], timeout: 1.0)
+    }
+    
     //MARK: - Helper
     
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (sut: CoinsListViewController, service: ServiceSpy) {
@@ -147,13 +290,32 @@ class CoinsListViewControllerTests: XCTestCase {
         // MARK: - ImageService
         
         private class TaskSpy: Cancellable {
+            let onCancel: () -> ()
+            
+            init(onCancel: @escaping () -> ()) {
+                self.onCancel = onCancel
+            }
+            
             func cancel() {
-                
+                onCancel()
             }
         }
         
+        var loadImageURLs: [String] = []
+        var cancelLoadImageURLs: [String] = []
+        
+        private(set) var loadImageCompletions: [(ImageService.Result) -> ()] = []
+        
         func load(_ imageURL: String, completion: @escaping (ImageService.Result) -> ()) -> Cancellable {
-            return TaskSpy()
+            loadImageURLs.append(imageURL)
+            loadImageCompletions.append(completion)
+            return TaskSpy {
+                self.cancelLoadImageURLs.append(imageURL)
+            }
+        }
+        
+        func didFinishLoadingImage(at index: Int = 0, data: Data) {
+            loadImageCompletions[index](.success(data))
         }
     }
 }

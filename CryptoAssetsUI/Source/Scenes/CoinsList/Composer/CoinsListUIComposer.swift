@@ -14,7 +14,10 @@ public final class CoinsListUIComposer {
     
     public static func coinsListComposedWith(coinService: CoinService, imageService: ImageService) -> CoinsListViewController {
         let viewController = Self.makeCoinsListViewController(title: "CryptoAssets")
-        let viewModel = CoinsListViewModel(coinService: coinService, imageService: imageService)
+        let viewModel = CoinsListViewModel(
+            coinService: MainQueueDispatchDecorator(coinService),
+            imageService: MainQueueDispatchDecorator(imageService)
+        )
         viewController.viewModel = viewModel
         return viewController
     }

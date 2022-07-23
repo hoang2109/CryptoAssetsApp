@@ -27,6 +27,7 @@ public final class CoinCellController {
     }
     
     func cancelLoad() {
+        releaseCellForReuse()
         cellModel.cancelLoadImage()
     }
     
