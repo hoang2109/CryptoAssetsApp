@@ -38,7 +38,7 @@ class CoinCellModel {
             guard let self = self else { return }
             self.onLoadingChanged?(false)
             
-            if let data = try? result.get() {
+            if let data = result {
                 self.onImageLoaded?(data)
             }
         }

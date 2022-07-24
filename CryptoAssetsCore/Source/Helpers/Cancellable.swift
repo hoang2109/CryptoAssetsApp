@@ -10,3 +10,7 @@ import Foundation
 public protocol Cancellable {
     func cancel()
 }
+
+public class NoneCancellable: Cancellable {
+    public func cancel() { }
+}

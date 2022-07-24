@@ -14,6 +14,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
     private lazy var navController = UINavigationController()
     private lazy var httpClient = URLSessionHTTPClient(APIBaseURLProvider())
+    private lazy var urlCache = URLCacheImpl()
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
@@ -28,26 +29,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     func makeCoinsListViewController() -> UIViewController {
+        let baseImageURL = URL(string: "https://www.cryptocompare.com")!
+        let remoteImageRepository = RemoteImageRepository(baseURL: baseImageURL, cache: urlCache)
+        let cacheImageRepository = CacheImageRepository(baseURL: baseImageURL, cache: urlCache)
+        let imageRepository = ImageRepositoryWithFallbackComposite(primary: cacheImageRepository, fallback: remoteImageRepository)
         let coinRepository = RemoteCoinRepository(httpClient)
         let coinService = CoinServiceImpl(coinRepository)
-        let imageService = ImageServiceStub()
+        let imageService = ImageServiceImpl(imageRepository)
         let viewController = CoinsListUIComposer.coinsListComposedWith(coinService: coinService, imageService: imageService)
         return viewController
-    }
-    
-    private class ImageTask: Cancellable {
-        func cancel() {
-            
-        }
-    }
-    
-    private class ImageServiceStub: ImageService {
-        func load(_ imageURL: String, completion: @escaping (ImageService.Result) -> ()) -> Cancellable {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                completion(.success(UIImage.make(withColor: .blue, size: CGSize(width: 30, height: 30)).pngData()!))
-            }
-            return ImageTask()
-        }
     }
 }
 
