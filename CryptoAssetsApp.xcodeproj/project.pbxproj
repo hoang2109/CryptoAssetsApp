@@ -50,6 +50,11 @@
 		CED63692288CE32F00383795 /* URLRequestMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED63691288CE32F00383795 /* URLRequestMapper.swift */; };
 		CED63694288CE34D00383795 /* BaseURLProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED63693288CE34D00383795 /* BaseURLProvider.swift */; };
 		CED63696288CE38900383795 /* HTTPHeaders.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED63695288CE38900383795 /* HTTPHeaders.swift */; };
+		CED63699288CE7DB00383795 /* CoinServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED63698288CE7DB00383795 /* CoinServiceImpl.swift */; };
+		CED6369C288CE8A500383795 /* CoinRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED6369B288CE8A500383795 /* CoinRepository.swift */; };
+		CED6369F288CE8F200383795 /* RemoteCoinRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED6369E288CE8F200383795 /* RemoteCoinRepository.swift */; };
+		CED636A2288CEA3600383795 /* TopTierCoinsEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED636A1288CEA3600383795 /* TopTierCoinsEndpoint.swift */; };
+		CED636A4288CEE4F00383795 /* TopTierCoinsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED636A3288CEE4F00383795 /* TopTierCoinsMapper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -180,6 +185,11 @@
 		CED63691288CE32F00383795 /* URLRequestMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequestMapper.swift; sourceTree = "<group>"; };
 		CED63693288CE34D00383795 /* BaseURLProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseURLProvider.swift; sourceTree = "<group>"; };
 		CED63695288CE38900383795 /* HTTPHeaders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPHeaders.swift; sourceTree = "<group>"; };
+		CED63698288CE7DB00383795 /* CoinServiceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinServiceImpl.swift; sourceTree = "<group>"; };
+		CED6369B288CE8A500383795 /* CoinRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinRepository.swift; sourceTree = "<group>"; };
+		CED6369E288CE8F200383795 /* RemoteCoinRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteCoinRepository.swift; sourceTree = "<group>"; };
+		CED636A1288CEA3600383795 /* TopTierCoinsEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTierCoinsEndpoint.swift; sourceTree = "<group>"; };
+		CED636A3288CEE4F00383795 /* TopTierCoinsMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTierCoinsMapper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -292,6 +302,7 @@
 		CE0DFD38288AFD5000EBBA05 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				CED6369A288CE89700383795 /* Repository */,
 				CE0DFD3A288AFD6200EBBA05 /* Entities */,
 				CE0DFD3B288AFDD100EBBA05 /* Services */,
 			);
@@ -301,6 +312,7 @@
 		CE0DFD39288AFD5700EBBA05 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				CED6369D288CE8DB00383795 /* Coin */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -318,6 +330,7 @@
 			children = (
 				CE0DFD3E288B04B700EBBA05 /* CoinService.swift */,
 				CE930E5D288BCE190035E985 /* ImageService.swift */,
+				CED63698288CE7DB00383795 /* CoinServiceImpl.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -519,6 +532,32 @@
 				CED63695288CE38900383795 /* HTTPHeaders.swift */,
 			);
 			path = HTTPClient;
+			sourceTree = "<group>";
+		};
+		CED6369A288CE89700383795 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				CED6369B288CE8A500383795 /* CoinRepository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		CED6369D288CE8DB00383795 /* Coin */ = {
+			isa = PBXGroup;
+			children = (
+				CED636A0288CEA1100383795 /* Remote */,
+			);
+			path = Coin;
+			sourceTree = "<group>";
+		};
+		CED636A0288CEA1100383795 /* Remote */ = {
+			isa = PBXGroup;
+			children = (
+				CED6369E288CE8F200383795 /* RemoteCoinRepository.swift */,
+				CED636A1288CEA3600383795 /* TopTierCoinsEndpoint.swift */,
+				CED636A3288CEE4F00383795 /* TopTierCoinsMapper.swift */,
+			);
+			path = Remote;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -797,16 +836,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CED636A4288CEE4F00383795 /* TopTierCoinsMapper.swift in Sources */,
 				CE0DFD3F288B04B700EBBA05 /* CoinService.swift in Sources */,
 				CE0DFD3D288AFEF600EBBA05 /* Coin.swift in Sources */,
 				CED63696288CE38900383795 /* HTTPHeaders.swift in Sources */,
+				CED63699288CE7DB00383795 /* CoinServiceImpl.swift in Sources */,
+				CED6369F288CE8F200383795 /* RemoteCoinRepository.swift in Sources */,
 				CED63692288CE32F00383795 /* URLRequestMapper.swift in Sources */,
 				CED6368C288CE29F00383795 /* HTTPClient.swift in Sources */,
 				CE930E64288BD6D20035E985 /* Cancellable.swift in Sources */,
 				CED63690288CE30A00383795 /* HTTPRequest.swift in Sources */,
+				CED6369C288CE8A500383795 /* CoinRepository.swift in Sources */,
 				CE930E5E288BCE190035E985 /* ImageService.swift in Sources */,
 				CED6368E288CE2DA00383795 /* URLSessionHTTPClient.swift in Sources */,
 				CED63694288CE34D00383795 /* BaseURLProvider.swift in Sources */,
+				CED636A2288CEA3600383795 /* TopTierCoinsEndpoint.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

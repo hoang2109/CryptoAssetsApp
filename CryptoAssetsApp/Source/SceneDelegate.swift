@@ -13,6 +13,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
     private lazy var navController = UINavigationController()
+    private lazy var httpClient = URLSessionHTTPClient(APIBaseURLProvider())
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
@@ -27,25 +28,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     func makeCoinsListViewController() -> UIViewController {
-        let coinService = CoinServiceStub()
+        let coinRepository = RemoteCoinRepository(httpClient)
+        let coinService = CoinServiceImpl(coinRepository)
         let imageService = ImageServiceStub()
         let viewController = CoinsListUIComposer.coinsListComposedWith(coinService: coinService, imageService: imageService)
         return viewController
-    }
-    
-    
-    private class CoinServiceStub: CoinService {
-        var stubItem: [Coin] = [
-            Coin(name: "Bitcoin", code: "BTC", imageURL: "bitcoin"),
-            Coin(name: "Etherium", code: "ETH", imageURL: "ehter"),
-            Coin(name: "Ripple", code: "XRP", imageURL: "ripple")
-        ]
-        
-        func fetchCoins(_ completion: @escaping (CoinService.Result) -> ()) {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                completion(.success(self.stubItem))
-            }
-        }
     }
     
     private class ImageTask: Cancellable {
@@ -64,3 +51,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 }
 
+struct APIBaseURLProvider: BaseURLProvider {
+    var baseURL: URL {
+        return URL(string: "https://min-api.cryptocompare.com")!
+    }
+}
