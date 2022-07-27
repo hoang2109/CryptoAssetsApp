@@ -8,5 +8,7 @@
 import Foundation
 
 public protocol BaseURLProvider {
-    var baseURL: URL { get }
+    var apiBaseURL: URL { get }
+    var imageBaseURL: URL { get }
+    var webSocketBaseURL: URL { get }
 }

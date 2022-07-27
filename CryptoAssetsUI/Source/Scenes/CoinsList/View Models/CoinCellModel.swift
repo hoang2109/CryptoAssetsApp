@@ -12,12 +12,22 @@ class CoinCellModel {
     
     typealias Observer<T> = (T) -> ()
     
-    private let coin: Coin
-    private let imageService: ImageService
-    private var loadImageTask: Cancellable?
+    enum ChangedType {
+        case increase
+        case decrease
+        case noChanged
+    }
     
     var onLoadingChanged: Observer<Bool>?
     var onImageLoaded: Observer<Data>?
+    var onCoinPriceChanged: (() -> ())?
+    
+    private(set) var coin: Coin
+    private let imageService: ImageService
+    private let coinTickerTrackerService: CoinTickerTrackerService
+    
+    private var trackerTask: Cancellable?
+    private var loadImageTask: Cancellable?
     
     var name: String {
         coin.name
@@ -27,9 +37,34 @@ class CoinCellModel {
         coin.code
     }
     
-    init(_ coin: Coin, imageService: ImageService) {
+    var price: String {
+        coin.price.currencyFormat
+    }
+    
+    var changePercentage: String {
+        let percentage = coin.calculatePercentChanged()
+        return percentage.percentageFormat
+    }
+    
+    var changeType: ChangedType {
+        let percentage = coin.calculatePercentChanged()
+        if percentage.sign == .plus {
+            return percentage == 0 ? .noChanged : .increase
+        }
+        return .decrease
+    }
+    
+    init(_ coin: Coin,
+         imageService: ImageService,
+         coinTickerTrackerService: CoinTickerTrackerService) {
         self.coin = coin
         self.imageService = imageService
+        self.coinTickerTrackerService = coinTickerTrackerService
+    }
+    
+    func onCellDidLoaded() {
+        loadImage()
+        listenCoinTickerTrackerService()
     }
     
     func loadImage() {
@@ -47,5 +82,29 @@ class CoinCellModel {
     func cancelLoadImage() {
         loadImageTask?.cancel()
         loadImageTask = nil
+    }
+    
+    func endDisplayingCell() {
+        cancelLoadImage()
+        cancelListenCoinTracker()
+    }
+    
+    deinit {
+        endDisplayingCell()
+    }
+    
+    private func listenCoinTickerTrackerService() {
+        trackerTask = coinTickerTrackerService.listen(onChange: { [weak self] coinTicker in
+            guard let self = self else { return }
+            if coinTicker.code == self.coin.code {
+                self.coin.update(with: coinTicker)
+                self.onCoinPriceChanged?()
+            }
+        })
+    }
+    
+    private func cancelListenCoinTracker() {
+        trackerTask?.cancel()
+        trackerTask = nil
     }
 }

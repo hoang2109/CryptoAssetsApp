@@ -16,29 +16,37 @@ public final class CoinCellController {
         self.cellModel = cellModel
     }
     
-    func cellForTableView(_ tableView: UITableView) -> UITableViewCell {
+    func cellForTableView(_ tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell {
         let cell: CoinCell = bind(tableView.dequeueReusableCell())
-        cellModel.loadImage()
+        cellModel.onCellDidLoaded()
         return cell
     }
     
-    func preload() {
+    func endDisplayingCell() {
+        releaseCellForReuse()
+        cellModel.endDisplayingCell()
+    }
+    
+    func preloadImage() {
         cellModel.loadImage()
     }
     
-    func cancelLoad() {
-        releaseCellForReuse()
+    func cancelLoadImage() {
         cellModel.cancelLoadImage()
     }
     
     private func bind(_ cell: CoinCell) -> CoinCell {
         self.cell = cell
-        cell.nameLabel.text = cellModel.name
-        cell.codeLabel.text = cellModel.code
+        cell.configure(cellModel)
         
         cellModel.onImageLoaded = { [weak self] data in
             guard let self = self else { return }
-            self.cell?.iconImageView.setImageAnimated(UIImage(data: data))
+            self.cell?.setImage(data)
+        }
+        
+        cellModel.onCoinPriceChanged = { [weak self] in
+            guard let self = self else { return }
+            self.cell?.configure(self.cellModel)
         }
         
         return cell

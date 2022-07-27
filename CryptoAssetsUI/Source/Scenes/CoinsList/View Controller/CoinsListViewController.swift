@@ -21,7 +21,7 @@ public class CoinsListViewController: UITableViewController, UITableViewDataSour
     
     public override func viewDidLoad() {
         tableView.prefetchDataSource = self
-        
+        viewModel?.startup()
         fetchCoins()
     }
     
@@ -38,24 +38,24 @@ public class CoinsListViewController: UITableViewController, UITableViewDataSour
     // MARK: - UITableViewDataDelegate
     
     public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        cellController(for: indexPath.row).cellForTableView(tableView)
+        cellController(for: indexPath.row).cellForTableView(tableView, at: indexPath)
     }
     
     public override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        cellController(for: indexPath.row).cancelLoad()
+        cellController(for: indexPath.row).endDisplayingCell()
     }
     
     // MARK: - UITableViewDataSourcePrefetching
     
     public func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
         indexPaths.forEach { indexPath in
-            cellController(for: indexPath.row).preload()
+            cellController(for: indexPath.row).preloadImage()
         }
     }
     
     public func tableView(_ tableView: UITableView, cancelPrefetchingForRowsAt indexPaths: [IndexPath]) {
         indexPaths.forEach { indexPath in
-            cellController(for: indexPath.row).cancelLoad()
+            cellController(for: indexPath.row).cancelLoadImage()
         }
     }
     

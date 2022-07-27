@@ -31,7 +31,7 @@ enum TopTierCoinsMapper {
         }
         
         var coin: Coin {
-            Coin(name: coinInfo.fullName, code: coinInfo.name, imageURL: coinInfo.imageURL, price: raw?.usd.price ?? 0)
+            Coin(name: coinInfo.fullName, code: coinInfo.name, imageURL: coinInfo.imageURL, price: raw?.usd.price ?? 0, open24Hour: raw?.usd.open24Hour ?? 0)
         }
     }
     

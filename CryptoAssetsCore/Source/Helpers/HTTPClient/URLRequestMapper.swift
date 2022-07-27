@@ -15,7 +15,7 @@ struct URLRequestMapper {
     }
     
     func map(httpRequest: HTTPRequest) -> URLRequest? {
-        let endpointUrl = baseUrlProvider.baseURL.appendingPathComponent(httpRequest.endPoint)
+        let endpointUrl = baseUrlProvider.apiBaseURL.appendingPathComponent(httpRequest.endPoint)
         guard var urlComponents = URLComponents(url: endpointUrl, resolvingAgainstBaseURL: false) else { return nil }
         
         var request: URLRequest
