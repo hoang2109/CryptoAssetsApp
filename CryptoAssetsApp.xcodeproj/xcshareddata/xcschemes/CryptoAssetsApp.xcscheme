@@ -26,10 +26,36 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      codeCoverageEnabled = "YES"
+      onlyGenerateCoverageForSpecifiedTargets = "YES">
+      <CodeCoverageTargets>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "CE4518B7288AF01B0026C8CF"
+            BuildableName = "CryptoAssetsApp.app"
+            BlueprintName = "CryptoAssetsApp"
+            ReferencedContainer = "container:CryptoAssetsApp.xcodeproj">
+         </BuildableReference>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "CE0DFD1A288AF99C00EBBA05"
+            BuildableName = "CryptoAssetsCore.framework"
+            BlueprintName = "CryptoAssetsCore"
+            ReferencedContainer = "container:CryptoAssetsApp.xcodeproj">
+         </BuildableReference>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "CE0DFCC6288AF74900EBBA05"
+            BuildableName = "CryptoAssetsUI.framework"
+            BlueprintName = "CryptoAssetsUI"
+            ReferencedContainer = "container:CryptoAssetsApp.xcodeproj">
+         </BuildableReference>
+      </CodeCoverageTargets>
       <Testables>
          <TestableReference
-            skipped = "NO">
+            skipped = "NO"
+            testExecutionOrdering = "random">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "CE4518CD288AF01E0026C8CF"
@@ -39,7 +65,8 @@
             </BuildableReference>
          </TestableReference>
          <TestableReference
-            skipped = "NO">
+            skipped = "NO"
+            testExecutionOrdering = "random">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "CE0DFCE6288AF78F00EBBA05"
@@ -49,17 +76,8 @@
             </BuildableReference>
          </TestableReference>
          <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "CE0DFCFE288AF8B500EBBA05"
-               BuildableName = "TestttttTests.xctest"
-               BlueprintName = "TestttttTests"
-               ReferencedContainer = "container:CryptoAssetsApp.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
+            skipped = "NO"
+            testExecutionOrdering = "random">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "CE0DFD21288AF99C00EBBA05"

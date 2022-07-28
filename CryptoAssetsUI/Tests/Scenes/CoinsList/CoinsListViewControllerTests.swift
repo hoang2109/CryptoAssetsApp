@@ -54,8 +54,8 @@ class CoinsListViewControllerTests: XCTestCase {
     
     func test_fetchCoinsListCompletion_rendersSuccessfullyCoinsList() {
         let (sut, service) = makeSUT()
-        let coin1 = Coin(name: "Bitcoin", code: "BTC", imageURL: "any")
-        let coin2 = Coin(name: "Etherium", code: "ETH", imageURL: "any")
+        let coin1 = Coin(name: "Bitcoin", code: "BTC", imageURL: "any", price: 21100, open24Hour: 21000)
+        let coin2 = Coin(name: "Etherium", code: "ETH", imageURL: "any", price: 1600, open24Hour: 1500)
         
         sut.loadViewIfNeeded()
         
@@ -75,8 +75,8 @@ class CoinsListViewControllerTests: XCTestCase {
     
     func test_fetchCoinsListCompletion_doesNotAlterRenderCurrentStateOnError() {
         let (sut, service) = makeSUT()
-        let coin1 = Coin(name: "Bitcoin", code: "BTC", imageURL: "any")
-        let coin2 = Coin(name: "Etherium", code: "ETH", imageURL: "any")
+        let coin1 = Coin(name: "Bitcoin", code: "BTC", imageURL: "any", price: 21100, open24Hour: 21000)
+        let coin2 = Coin(name: "Etherium", code: "ETH", imageURL: "any", price: 1600, open24Hour: 1500)
         
         sut.loadViewIfNeeded()
         service.didFinishFetchingCoins(with: [coin1, coin2])
@@ -90,8 +90,8 @@ class CoinsListViewControllerTests: XCTestCase {
     func test_cellAppear_callLoadImage() {
         let (sut, service) = makeSUT()
         
-        let coin1 = Coin(name: "Bitcoin", code: "BTC", imageURL: "/btc")
-        let coin2 = Coin(name: "Etherium", code: "ETH", imageURL: "/eth")
+        let coin1 = Coin(name: "Bitcoin", code: "BTC", imageURL: "/btc", price: 21100, open24Hour: 21000)
+        let coin2 = Coin(name: "Etherium", code: "ETH", imageURL: "/eth", price: 1600, open24Hour: 1500)
         
         sut.loadViewIfNeeded()
         service.didFinishFetchingCoins(with: [coin1, coin2])
@@ -106,8 +106,8 @@ class CoinsListViewControllerTests: XCTestCase {
     func test_loadImage_rendersImageSuccessfullyOnCompletion() {
         let (sut, service) = makeSUT()
         
-        let coin1 = Coin(name: "Bitcoin", code: "BTC", imageURL: "any")
-        let coin2 = Coin(name: "Etherium", code: "ETH", imageURL: "any")
+        let coin1 = Coin(name: "Bitcoin", code: "BTC", imageURL: "any", price: 21100, open24Hour: 21000)
+        let coin2 = Coin(name: "Etherium", code: "ETH", imageURL: "any", price: 1600, open24Hour: 1500)
         let redImageData = UIImage.make(withColor: .red).pngData()!
         let blueImageData = UIImage.make(withColor: .blue).pngData()!
         
@@ -127,8 +127,8 @@ class CoinsListViewControllerTests: XCTestCase {
     func test_endDisplayingCell_cancelLoadImage() {
         let (sut, service) = makeSUT()
         
-        let coin1 = Coin(name: "Bitcoin", code: "BTC", imageURL: "any")
-        let coin2 = Coin(name: "Etherium", code: "ETH", imageURL: "any")
+        let coin1 = Coin(name: "Bitcoin", code: "BTC", imageURL: "any", price: 21100, open24Hour: 21000)
+        let coin2 = Coin(name: "Etherium", code: "ETH", imageURL: "any", price: 1600, open24Hour: 1500)
         
         sut.loadViewIfNeeded()
         service.didFinishFetchingCoins(with: [coin1, coin2])
@@ -146,8 +146,8 @@ class CoinsListViewControllerTests: XCTestCase {
     func test_endDisplayingCell_notRendersImageOnCompletion() {
         let (sut, service) = makeSUT()
         
-        let coin1 = Coin(name: "Bitcoin", code: "BTC", imageURL: "any")
-        let coin2 = Coin(name: "Etherium", code: "ETH", imageURL: "any")
+        let coin1 = Coin(name: "Bitcoin", code: "BTC", imageURL: "any", price: 21100, open24Hour: 21000)
+        let coin2 = Coin(name: "Etherium", code: "ETH", imageURL: "any", price: 1600, open24Hour: 1500)
         
         sut.loadViewIfNeeded()
         service.didFinishFetchingCoins(with: [coin1, coin2])
@@ -162,8 +162,8 @@ class CoinsListViewControllerTests: XCTestCase {
     func test_cellNearVisible_preloadImage() {
         let (sut, service) = makeSUT()
         
-        let coin1 = Coin(name: "Bitcoin", code: "BTC", imageURL: "/btc")
-        let coin2 = Coin(name: "Etherium", code: "ETH", imageURL: "/eth")
+        let coin1 = Coin(name: "Bitcoin", code: "BTC", imageURL: "/btc", price: 21100, open24Hour: 21000)
+        let coin2 = Coin(name: "Etherium", code: "ETH", imageURL: "/eth", price: 1600, open24Hour: 1500)
         
         sut.loadViewIfNeeded()
         service.didFinishFetchingCoins(with: [coin1, coin2])
@@ -179,8 +179,8 @@ class CoinsListViewControllerTests: XCTestCase {
     func test_cellNotNearVisible_cancelPreloadImage() {
         let (sut, service) = makeSUT()
         
-        let coin1 = Coin(name: "Bitcoin", code: "BTC", imageURL: "/btc")
-        let coin2 = Coin(name: "Etherium", code: "ETH", imageURL: "/eth")
+        let coin1 = Coin(name: "Bitcoin", code: "BTC", imageURL: "/btc", price: 21100, open24Hour: 21000)
+        let coin2 = Coin(name: "Etherium", code: "ETH", imageURL: "/eth", price: 1600, open24Hour: 1500)
         
         sut.loadViewIfNeeded()
         service.didFinishFetchingCoins(with: [coin1, coin2])
@@ -194,8 +194,8 @@ class CoinsListViewControllerTests: XCTestCase {
     }
     
     func test_fetchCoinsCompletion_dispatchesFromBackGroundToMainThrea() {
-        let coin1 = Coin(name: "Bitcoin", code: "BTC", imageURL: "/btc")
-        let coin2 = Coin(name: "Etherium", code: "ETH", imageURL: "/eth")
+        let coin1 = Coin(name: "Bitcoin", code: "BTC", imageURL: "/btc", price: 21100, open24Hour: 21000)
+        let coin2 = Coin(name: "Etherium", code: "ETH", imageURL: "/eth", price: 1600, open24Hour: 1500)
         let (sut, service) = makeSUT()
         
         sut.loadViewIfNeeded()
@@ -211,8 +211,8 @@ class CoinsListViewControllerTests: XCTestCase {
     }
     
     func test_loadImageCompletion_dispatchesFromBackGroundToMainThrea() {
-        let coin1 = Coin(name: "Bitcoin", code: "BTC", imageURL: "/btc")
-        let coin2 = Coin(name: "Etherium", code: "ETH", imageURL: "/eth")
+        let coin1 = Coin(name: "Bitcoin", code: "BTC", imageURL: "/btc", price: 21100, open24Hour: 21000)
+        let coin2 = Coin(name: "Etherium", code: "ETH", imageURL: "/eth", price: 1600, open24Hour: 1500)
         let (sut, service) = makeSUT()
         
         sut.loadViewIfNeeded()
@@ -234,7 +234,7 @@ class CoinsListViewControllerTests: XCTestCase {
     
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (sut: CoinsListViewController, service: ServiceSpy) {
         let service = ServiceSpy()
-        let sut = CoinsListUIComposer.coinsListComposedWith(coinService: service, imageService: service)
+        let sut = CoinsListUIComposer.coinsListComposedWith(coinService: service, imageService: service, coinTickerTrackerService: service)
         trackForMemoryLeaks(service, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
         return (sut, service)
@@ -262,7 +262,7 @@ class CoinsListViewControllerTests: XCTestCase {
         XCTAssertEqual(cell.code, item.code, "Expected code text to be \(String(describing: item.code)) for coin at index (\(index))", file: file, line: line)
     }
     
-    private class ServiceSpy: CoinService, ImageService {
+    private class ServiceSpy: CoinService, ImageService, CoinTickerTrackerService {
         
         // MARK: - CoinService
         var fetchCoinsCount: Int {
@@ -315,7 +315,20 @@ class CoinsListViewControllerTests: XCTestCase {
         }
         
         func didFinishLoadingImage(at index: Int = 0, data: Data) {
-            loadImageCompletions[index](.success(data))
+            loadImageCompletions[index](data)
+        }
+        
+        // MARK: - CoinTickerTrackerService
+        func connect() {
+            
+        }
+        
+        func track(coins: [Coin]) {
+            
+        }
+        
+        func listen(onChange: @escaping (CoinTicker) -> ()) -> Cancellable {
+            return TaskSpy { }
         }
     }
 }
