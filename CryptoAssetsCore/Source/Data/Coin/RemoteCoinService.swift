@@ -7,9 +7,9 @@
 
 import Foundation
 
-public class RemoteCoinRepository: CoinRepository {
+public class RemoteCoinService: CoinService {
     
-    public typealias Result = CoinRepository.Result
+    public typealias Result = CoinService.Result
     
     private let httpClient: HTTPClient
     

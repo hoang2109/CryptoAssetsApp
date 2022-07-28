@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class CoinTickerTrackerServiceImpl: NSObject, CoinTickerTrackerService {
+public class RemoteCoinTickerTrackerService: NSObject, CoinTickerTrackerService {
     
     typealias Observer<T> = (T) -> ()
     
@@ -87,7 +87,7 @@ public class CoinTickerTrackerServiceImpl: NSObject, CoinTickerTrackerService {
     }
 }
 
-extension CoinTickerTrackerServiceImpl: URLSessionWebSocketDelegate {
+extension RemoteCoinTickerTrackerService: URLSessionWebSocketDelegate {
     public func urlSession(_ session: URLSession, webSocketTask: URLSessionWebSocketTask, didOpenWithProtocol protocol: String?) {
         print("==> onConnected")
     }

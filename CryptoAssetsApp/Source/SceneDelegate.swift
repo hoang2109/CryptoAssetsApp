@@ -30,12 +30,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     func makeCoinsListViewController() -> UIViewController {
-        let remoteImageRepository = RemoteImageRepository(baseURL: urlProvider.imageBaseURL, cache: urlCache)
-        let cacheImageRepository = CacheImageRepository(baseURL: urlProvider.imageBaseURL, cache: urlCache)
-        let imageRepository = ImageRepositoryWithFallbackComposite(primary: cacheImageRepository, fallback: remoteImageRepository)
-        let coinRepository = RemoteCoinRepository(httpClient)
-        let coinService = CoinServiceImpl(coinRepository)
-        let imageService = ImageServiceImpl(imageRepository)
+        let remoteImageService = RemoteImageService(baseURL: urlProvider.imageBaseURL, cache: urlCache)
+        let cacheImageService = CacheImageService(baseURL: urlProvider.imageBaseURL, cache: urlCache)
+        let imageService = ImageServiceWithFallbackComposite(primary: cacheImageService, fallback: remoteImageService)
+        let coinService = RemoteCoinService(httpClient)
         let coinTickerTrackerService = CoinTickerTrackerServiceImpl(url: urlProvider.webSocketBaseURL)
         let viewController = CoinsListUIComposer.coinsListComposedWith(coinService: coinService, imageService: imageService, coinTickerTrackerService: coinTickerTrackerService)
         return viewController

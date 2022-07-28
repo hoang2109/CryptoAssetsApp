@@ -7,9 +7,9 @@
 
 import Foundation
 
-public class ImageRepositoryWithFallbackComposite: ImageRepository {
+public class ImageServiceWithFallbackComposite: ImageService {
     
-    public typealias Result = ImageRepository.Result
+    public typealias Result = ImageService.Result
     
     private class TaskWrapper: Cancellable {
         var wrapped: Cancellable?
@@ -19,10 +19,10 @@ public class ImageRepositoryWithFallbackComposite: ImageRepository {
         }
     }
     
-    private let primary: ImageRepository
-    private let fallback: ImageRepository
+    private let primary: ImageService
+    private let fallback: ImageService
     
-    public init(primary: ImageRepository, fallback: ImageRepository) {
+    public init(primary: ImageService, fallback: ImageService) {
         self.primary = primary
         self.fallback = fallback
     }

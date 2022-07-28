@@ -7,8 +7,8 @@
 
 import Foundation
 
-public class CacheImageRepository: ImageRepository {
-    public typealias Result = ImageRepository.Result
+public class CacheImageService: ImageService {
+    public typealias Result = ImageService.Result
     
     private let baseURL: URL
     private let cache: URLCache

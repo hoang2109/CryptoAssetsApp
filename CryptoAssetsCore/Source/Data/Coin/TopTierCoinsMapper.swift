@@ -64,9 +64,9 @@ enum TopTierCoinsMapper {
     
     private static var statusCode200: Int { return 200 }
     
-    static func map(data: Data, response: HTTPURLResponse) -> CoinRepository.Result {
+    static func map(data: Data, response: HTTPURLResponse) -> CoinService.Result {
         guard response.statusCode == statusCode200, let data = try? JSONDecoder().decode(CoinRootResponse.self, from: data) else {
-            return .failure(RemoteCoinRepository.Error.invalidData)
+            return .failure(RemoteCoinService.Error.invalidData)
         }
         return .success(data.coins)
     }
