@@ -210,7 +210,7 @@ class CoinsListViewControllerTests: XCTestCase {
         wait(for: [exp], timeout: 1.0)
     }
     
-    func test_loadImageCompletion_dispatchesFromBackGroundToMainThrea() {
+    func test_loadImageCompletion_dispatchesFromBackGroundToMainThread() {
         let coin1 = Coin(name: "Bitcoin", code: "BTC", imageURL: "/btc", price: 21100, open24Hour: 21000)
         let coin2 = Coin(name: "Etherium", code: "ETH", imageURL: "/eth", price: 1600, open24Hour: 1500)
         let (sut, service) = makeSUT()
@@ -224,6 +224,140 @@ class CoinsListViewControllerTests: XCTestCase {
         
         DispatchQueue.global().async {
             service.didFinishLoadingImage(data: UIImage.make(withColor: .red).pngData()!)
+            exp.fulfill()
+        }
+        
+        wait(for: [exp], timeout: 1.0)
+    }
+    
+    func test_viewDidLoad_connectsCoinTickerTrackerService() {
+        let (sut, service) = makeSUT()
+        
+        sut.loadViewIfNeeded()
+        
+        XCTAssertEqual(service.connectCalledCount, 1)
+    }
+    
+    func test_fetchesCoinListSuccessfully_tracksCoinPriceChange() {
+        let coin1 = Coin(name: "Bitcoin", code: "BTC", imageURL: "/btc", price: 21100, open24Hour: 21000)
+        let coin2 = Coin(name: "Etherium", code: "ETH", imageURL: "/eth", price: 1600, open24Hour: 1500)
+        let (sut, service) = makeSUT()
+        
+        sut.loadViewIfNeeded()
+        service.didFinishFetchingCoins(with: [coin1, coin2])
+        
+        XCTAssertEqual(service.trackedCoins, [coin1, coin2])
+    }
+    
+    func test_cellVisible_listenCoinTickerChangedService() {
+        let coin1 = Coin(name: "Bitcoin", code: "BTC", imageURL: "/btc", price: 21100, open24Hour: 21000)
+        let coin2 = Coin(name: "Etherium", code: "ETH", imageURL: "/eth", price: 1600, open24Hour: 1500)
+        let coin3 = Coin(name: "Litecoin", code: "LTC", imageURL: "/ltc", price: 52, open24Hour: 50)
+        let (sut, service) = makeSUT()
+        
+        sut.loadViewIfNeeded()
+        service.didFinishFetchingCoins(with: [coin1, coin2, coin3])
+        
+        sut.coinCell(at: 0)
+        
+        XCTAssertEqual(service.listenRequest, 1)
+        
+        sut.coinCell(at: 1)
+        
+        XCTAssertEqual(service.listenRequest, 2)
+        
+        sut.coinCell(at: 2)
+        
+        XCTAssertEqual(service.listenRequest, 3)
+    }
+    
+    func test_receiveCoinTickerChanged_updateCell() {
+        let coin1 = Coin(name: "Bitcoin", code: "BTC", imageURL: "/btc", price: 21100, open24Hour: 21000)
+        let coin2 = Coin(name: "Etherium", code: "ETH", imageURL: "/eth", price: 1600, open24Hour: 1500)
+        let coin3 = Coin(name: "Litecoin", code: "LTC", imageURL: "/ltc", price: 52, open24Hour: 50)
+        let (sut, service) = makeSUT()
+        
+        sut.loadViewIfNeeded()
+        service.didFinishFetchingCoins(with: [coin1, coin2, coin3])
+        
+        let btcCell = sut.coinCell(at: 0) as! CoinCell
+        let ethCell = sut.coinCell(at: 1) as! CoinCell
+        let ltcCell = sut.coinCell(at: 2) as! CoinCell
+        
+        service.receiveCoinTickerChange(CoinTicker(code: "BTC", price: 32000))
+        XCTAssertEqual(btcCell.priceLabel.text, "$32,000")
+        XCTAssertEqual(btcCell.changeLabel.text, "+52.38%")
+        XCTAssertEqual(ethCell.priceLabel.text, "$1,600")
+        XCTAssertEqual(ethCell.changeLabel.text, "+6.67%")
+        XCTAssertEqual(ltcCell.priceLabel.text, "$52")
+        XCTAssertEqual(ltcCell.changeLabel.text, "+4.00%")
+        
+        service.receiveCoinTickerChange(CoinTicker(code: "ETH", price: 1200))
+        XCTAssertEqual(btcCell.priceLabel.text, "$32,000")
+        XCTAssertEqual(btcCell.changeLabel.text, "+52.38%")
+        XCTAssertEqual(ethCell.priceLabel.text, "$1,200")
+        XCTAssertEqual(ethCell.changeLabel.text, "-20.00%")
+        XCTAssertEqual(ltcCell.priceLabel.text, "$52")
+        XCTAssertEqual(ltcCell.changeLabel.text, "+4.00%")
+        
+        service.receiveCoinTickerChange(CoinTicker(code: "LTC", price: 53))
+        XCTAssertEqual(btcCell.priceLabel.text, "$32,000")
+        XCTAssertEqual(btcCell.changeLabel.text, "+52.38%")
+        XCTAssertEqual(ethCell.priceLabel.text, "$1,200")
+        XCTAssertEqual(ethCell.changeLabel.text, "-20.00%")
+        XCTAssertEqual(ltcCell.priceLabel.text, "$53")
+        XCTAssertEqual(ltcCell.changeLabel.text, "+6.00%")
+    }
+    
+    func test_cellNotVisible_cancelsListeningCoinTickerChangedService() {
+        let coin1 = Coin(name: "Bitcoin", code: "BTC", imageURL: "/btc", price: 21100, open24Hour: 21000)
+        let coin2 = Coin(name: "Etherium", code: "ETH", imageURL: "/eth", price: 1600, open24Hour: 1500)
+        let coin3 = Coin(name: "Litecoin", code: "LTC", imageURL: "/ltc", price: 52, open24Hour: 50)
+        let (sut, service) = makeSUT()
+        
+        sut.loadViewIfNeeded()
+        service.didFinishFetchingCoins(with: [coin1, coin2, coin3])
+        
+        sut.didEndDisplayingCell(at: 0)
+        
+        XCTAssertEqual(service.cancellListenCalledCount, 1)
+    }
+    
+    func test_pullToRefresh_cancelsListeningCoinTickerChangedService() {
+        let coin1 = Coin(name: "Bitcoin", code: "BTC", imageURL: "/btc", price: 21100, open24Hour: 21000)
+        let coin2 = Coin(name: "Etherium", code: "ETH", imageURL: "/eth", price: 1600, open24Hour: 1500)
+        let coin3 = Coin(name: "Litecoin", code: "LTC", imageURL: "/ltc", price: 52, open24Hour: 50)
+        let (sut, service) = makeSUT()
+        
+        sut.loadViewIfNeeded()
+        service.didFinishFetchingCoins(with: [coin1, coin2, coin3])
+        
+        sut.coinCell(at: 0)
+        sut.coinCell(at: 1)
+        sut.coinCell(at: 2)
+        
+        XCTAssertEqual(service.cancellListenCalledCount, 0)
+        
+        sut.simulateUserInitiatedCoinsListReload()
+        service.didFinishFetchingCoins(with: [])
+        
+        XCTAssertEqual(service.cancellListenCalledCount, 3)
+    }
+    
+    func test_recevieCoinTicker_dispatchesFromBackGroundToMainThread() {
+        let coin1 = Coin(name: "Bitcoin", code: "BTC", imageURL: "/btc", price: 21100, open24Hour: 21000)
+        
+        let (sut, service) = makeSUT()
+        
+        sut.loadViewIfNeeded()
+        service.didFinishFetchingCoins(with: [coin1])
+        
+        sut.coinCell(at: 0)
+        
+        let exp = expectation(description: "Waiting for completion")
+        
+        DispatchQueue.global().async {
+            service.receiveCoinTickerChange(CoinTicker(code: "BTC", price: 32000))
             exp.fulfill()
         }
         
@@ -319,16 +453,35 @@ class CoinsListViewControllerTests: XCTestCase {
         }
         
         // MARK: - CoinTickerTrackerService
+        
+        private(set) var trackedCoins = [Coin]()
+        private(set) var connectCalledCount = 0
+        private(set) var onChangeHandlers = [(CoinTicker) -> ()]()
+        private(set) var cancellListenCalledCount = 0
+        
+        var listenRequest: Int {
+            return onChangeHandlers.count
+        }
+        
         func connect() {
-            
+            connectCalledCount += 1
         }
         
         func track(coins: [Coin]) {
-            
+            trackedCoins = coins
         }
         
         func listen(onChange: @escaping (CoinTicker) -> ()) -> Cancellable {
-            return TaskSpy { }
+            onChangeHandlers.append(onChange)
+            return TaskSpy {
+                self.cancellListenCalledCount += 1
+            }
+        }
+        
+        func receiveCoinTickerChange(_ coinTicker: CoinTicker) {
+            for observer in onChangeHandlers {
+                observer(coinTicker)
+            }
         }
     }
 }

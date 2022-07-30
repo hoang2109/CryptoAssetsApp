@@ -17,7 +17,7 @@ public final class CoinsListUIComposer {
         let viewModel = CoinsListViewModel(
             coinService: MainQueueDispatchDecorator(coinService),
             imageService: MainQueueDispatchDecorator(imageService),
-            coinTickerTrackerService: coinTickerTrackerService
+            coinTickerTrackerService: MainQueueDispatchDecorator(coinTickerTrackerService)
         )
         viewController.viewModel = viewModel
         return viewController

@@ -43,3 +43,21 @@ extension MainQueueDispatchDecorator: ImageService where T == ImageService {
         }
     }
 }
+
+extension MainQueueDispatchDecorator: CoinTickerTrackerService where T == CoinTickerTrackerService {
+    func connect() {
+        decoratee.connect()
+    }
+    
+    func track(coins: [Coin]) {
+        decoratee.track(coins: coins)
+    }
+    
+    func listen(onChange: @escaping (CoinTicker) -> ()) -> Cancellable {
+        decoratee.listen { [weak self] coinTicker in
+            self?.dispathMainThread {
+                onChange(coinTicker)
+            }
+        }
+    }
+}

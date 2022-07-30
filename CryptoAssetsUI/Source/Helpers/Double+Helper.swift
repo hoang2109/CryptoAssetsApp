@@ -9,6 +9,5 @@ import Foundation
 
 extension Double {
     var currencyFormat: String { Formatter.currencyFormat.string(for: self) ?? "" }
-    var diffFomat: String { Formatter.diffFormat.string(for: self) ?? "" }
     var percentageFormat: String { Formatter.percentageFormat.string(for: self) ?? "" }
 }
