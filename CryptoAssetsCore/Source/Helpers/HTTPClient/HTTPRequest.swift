@@ -22,12 +22,12 @@ public struct HTTPRequest {
     
     let id: String
     
-    private(set) var method: Method
-    private(set) var endPoint: String
-    private(set) var parameters: [String: Any]
-    private(set) var body: Data?
-    private(set) var headers: [String: String]
-    private(set) var keyDecodingStrategy: JSONDecoder.KeyDecodingStrategy
+    public private(set) var method: Method
+    public private(set) var endPoint: String
+    public private(set) var parameters: [String: Any]
+    public private(set) var body: Data?
+    public private(set) var headers: [String: String]
+    public private(set) var keyDecodingStrategy: JSONDecoder.KeyDecodingStrategy
     
     public init(
         method: Method = .get,
