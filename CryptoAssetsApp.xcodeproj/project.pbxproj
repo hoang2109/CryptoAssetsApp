@@ -47,6 +47,9 @@
 		CEBD8A9D2896612E0094D617 /* RemoteCoinServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBD8A9B289661240094D617 /* RemoteCoinServiceTests.swift */; };
 		CEBD8AA128966B9A0094D617 /* coinslist.json in Resources */ = {isa = PBXBuildFile; fileRef = CEBD8A9F28966A4C0094D617 /* coinslist.json */; };
 		CEBD8AA728966DBD0094D617 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE930E52288BABBD0035E985 /* XCTestCase+MemoryLeakTracking.swift */; };
+		CEBD8AAB28966E510094D617 /* CacheImageServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBD8AA928966E480094D617 /* CacheImageServiceTests.swift */; };
+		CEBD8AAC289670D40094D617 /* UIImage+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE930E65288BD8C50035E985 /* UIImage+Color.swift */; };
+		CEBD8AAE289671B50094D617 /* ImageServiceWithFallbackCompositeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBD8AAD289671B50094D617 /* ImageServiceWithFallbackCompositeTests.swift */; };
 		CED6368C288CE29F00383795 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED6368B288CE29F00383795 /* HTTPClient.swift */; };
 		CED6368E288CE2DA00383795 /* URLSessionHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED6368D288CE2D900383795 /* URLSessionHTTPClient.swift */; };
 		CED63690288CE30A00383795 /* HTTPRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED6368F288CE30A00383795 /* HTTPRequest.swift */; };
@@ -196,6 +199,8 @@
 		CEBD8A972892C7E60094D617 /* URL+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Helper.swift"; sourceTree = "<group>"; };
 		CEBD8A9B289661240094D617 /* RemoteCoinServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteCoinServiceTests.swift; sourceTree = "<group>"; };
 		CEBD8A9F28966A4C0094D617 /* coinslist.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = coinslist.json; sourceTree = "<group>"; };
+		CEBD8AA928966E480094D617 /* CacheImageServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheImageServiceTests.swift; sourceTree = "<group>"; };
+		CEBD8AAD289671B50094D617 /* ImageServiceWithFallbackCompositeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageServiceWithFallbackCompositeTests.swift; sourceTree = "<group>"; };
 		CED6368B288CE29F00383795 /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		CED6368D288CE2D900383795 /* URLSessionHTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClient.swift; sourceTree = "<group>"; };
 		CED6368F288CE30A00383795 /* HTTPRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPRequest.swift; sourceTree = "<group>"; };
@@ -562,6 +567,7 @@
 		CEBD8A99289661000094D617 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				CEBD8AA828966E370094D617 /* Image */,
 				CEBD8A9A289661090094D617 /* Coin */,
 			);
 			path = Data;
@@ -582,6 +588,15 @@
 				CEBD8A9F28966A4C0094D617 /* coinslist.json */,
 			);
 			path = json;
+			sourceTree = "<group>";
+		};
+		CEBD8AA828966E370094D617 /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				CEBD8AA928966E480094D617 /* CacheImageServiceTests.swift */,
+				CEBD8AAD289671B50094D617 /* ImageServiceWithFallbackCompositeTests.swift */,
+			);
+			path = Image;
 			sourceTree = "<group>";
 		};
 		CED6368A288CE28800383795 /* HTTPClient */ = {
@@ -946,6 +961,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEBD8AAB28966E510094D617 /* CacheImageServiceTests.swift in Sources */,
+				CEBD8AAC289670D40094D617 /* UIImage+Color.swift in Sources */,
 				CEBD8A9D2896612E0094D617 /* RemoteCoinServiceTests.swift in Sources */,
 				CEBD8AA728966DBD0094D617 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 			);
@@ -966,6 +983,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE4518D3288AF01E0026C8CF /* CryptoAssetsAppTests.swift in Sources */,
+				CEBD8AAE289671B50094D617 /* ImageServiceWithFallbackCompositeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

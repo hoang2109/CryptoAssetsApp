@@ -12,5 +12,7 @@ public protocol Cancellable {
 }
 
 public class NoneCancellable: Cancellable {
+    public init() {}
+    
     public func cancel() { }
 }
