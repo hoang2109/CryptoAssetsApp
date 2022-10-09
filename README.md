@@ -1,5 +1,5 @@
 # CryptoAssetsApp
-CryptoAssetsApp is an sample iOS App displays list of top tier crypto currencies and tracking their price changes in real time.
+CryptoAssetsApp is a sample iOS App displays list of top tier crypto currencies and tracking their price changes in real time.
 
 <p align="center"><img width="300" src="https://user-images.githubusercontent.com/1131493/194743319-3b7d0897-3479-4d35-b2ad-513757353d7a.png"></p>
 
